@@ -2,6 +2,7 @@ package app.loja.controllers;
 
 import app.loja.Entities.Venda;
 import app.loja.service.VendaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class VendaController {
     private VendaService vendaService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@RequestBody Venda venda){
+    public ResponseEntity<String> save(@RequestBody @Valid Venda venda){
         try {
             String result = this.vendaService.save(venda);
             return new ResponseEntity<>(result, HttpStatus.OK);
@@ -30,7 +31,7 @@ public class VendaController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@RequestBody Venda venda, @PathVariable long id){
+    public ResponseEntity<String> update(@RequestBody @Valid Venda venda, @PathVariable long id){
         try {
             String mensagem = this.vendaService.update(venda, id);
             return new ResponseEntity<>(mensagem, HttpStatus.OK);

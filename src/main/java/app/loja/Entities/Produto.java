@@ -2,6 +2,7 @@ package app.loja.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,13 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String descricao;
+
+    @NotNull
     private double preco;
 
     @ManyToOne(cascade = CascadeType.ALL)
